@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+
+  mysql: 
+    image: mysql:8.0.33
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+    volumes:
+      - ./db:/var/lib/mysql 
+
+  php:
+    build:
+        context: .
+        dockerfile: docker/php/Dockerfile
+    ports:
+        - 8000:8000
+    expose:
+        - "9003"
+    volumes:
+      - ./www:/var/www
+    depends_on:
+      - mysql
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
