@@ -4,15 +4,14 @@ services:
 
   mysql: 
     image: mysql:8.0.33
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: test
-    volumes:
-      - ./db:/var/lib/mysql 
-
-  php:
+  mmand: --default-authentication-plugin=mysql_native_password
+  estart: always
+  :
+  SQL_ROOT_PASSWORD: password
+  SQL_DATABASE: test
+  lumes:
+    - ./db:/var/lib/mysql 
+ php:
     build:
         context: .
         dockerfile: docker/php/Dockerfile
@@ -25,8 +24,13 @@ services:
     depends_on:
       - mysql
 
-  adminer:
-      image: adminer
-      restart: always
-      ports:
-        - 8080:8080
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+     container_name: php_8_phpmyadmin
+    environment:
+        PMA_HOST: mysql
+        PMA_PORT: 3306
+        PMA_ARBITRARY: 1    
+    restart: always
+    ports:
+      - 8080:80
