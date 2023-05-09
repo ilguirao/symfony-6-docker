@@ -24,9 +24,9 @@ Tested in W11 PRO (24/04/2023).
 
 ``` docker-compose up -d --build ```
 
-8. Execute bash
+8. Execute bash -> Replace (php_docker_container_name) with php container name. Remember "docker ps"
 
-``` docker exec -it test-docker-php-1 bash ```
+``` docker exec -it (php_docker_container_name) bash ```
 
 9. Create new Symfony Project
 
