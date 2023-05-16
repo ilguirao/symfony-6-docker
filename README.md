@@ -1,5 +1,14 @@
 ﻿# Config Symfony 6 + Mysql (Enviroment Docker)
-Tested in W11 PRO (24/04/2023). 
+Stack:
+- Symfony 6.2
+- PHP 8.1.18-FPM
+    - NodeJS v20.1.0
+    - Yarn v1.22.19
+    - XDegug
+- Mysql 8
+- PhpMyAdmin
+
+Tested in WSL with W11 PRO (16/05/2023). 
 
 # Steps to enjoy this setup
 
