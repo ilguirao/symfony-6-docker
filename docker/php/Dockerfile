@@ -44,6 +44,18 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
 COPY ./docker/xdebug/xdebug.ini $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini
 COPY ./docker/opcache/opcache.ini $PHP_INI_DIR/conf.d/ddocker-php-ext-opcache.ini
 
+# Node.js
+RUN curl -sL https://deb.nodesource.com/setup_20.x -o node_setup.sh && \
+    bash node_setup.sh && \
+    apt-get install -y nodejs && \
+    npm install npm -g
+
+# Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install -y yarn
+
 RUN git config --global user.email "name@mail.com" \ 
     && git config --global user.name "Your Name"
 WORKDIR /var/www
